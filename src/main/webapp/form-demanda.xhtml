@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<h:body>
+
+	<h2>CADASTRO DE DEMANDA</h2>
+
+	<h:messages />
+
+	<h:form>
+
+		<h:commandLink action="#{gerenciarDemandasBean.carregarView(lista-demandas)}" value="lista de demandas" immediate="true" />
+
+		<fieldset>
+
+			<h:panelGrid columns="2">
+
+				<h:outputLabel for="data_recebimento" value="DATA RECEBIMENTO:" />
+				<h:inputText id="data_recebimento"
+					value="#{gerenciarDemandasBean.demanda.dataRecebimento}">
+					<f:passThroughAttribute name="type" value="date" />
+					<f:converter converterId="localDateConverter" />
+				</h:inputText>
+
+				<h:outputLabel for="canal_recebimento" value="CANAL RECEBIMENTO:" />
+				<h:inputText id="canal_recebimento"
+					value="#{gerenciarDemandasBean.demanda.canalRecebimento}" />
+
+				<h:outputLabel for="descricao" value="DESCRIÇÃO:" />
+				<h:inputText id="descricao"
+					value="#{gerenciarDemandasBean.demanda.descricao}" />
+
+			</h:panelGrid>
+
+			<h:commandButton action="#{gerenciarDemandasBean.gravarDemanda}"
+				value="Salvar" />
+
+		</fieldset>
+		
+		<h:commandLink action="#{gerenciarDemandasBean.registrarProvidencia}" value="adicionar providencia" />
+		<h:dataTable value="#{gerenciarDemandasBean.demanda.providencias}" var="providencia" >
+		
+			<h:column>
+				<f:facet name="header">DATA</f:facet>
+				<h:outputText value="#{providencia.data}">
+					<f:converter converterId="localDateConverter" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">DESCRIÇÃO</f:facet>
+				<h:commandLink action="#{gerenciarDemandasBean.editarProvidencia(providencia)}" value="#{providencia.descricao}" />
+			</h:column>
+		
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+</html>

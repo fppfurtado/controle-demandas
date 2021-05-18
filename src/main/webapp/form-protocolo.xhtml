@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
+		
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+	<h:body>
+	
+		<h2>CADASTRAR PROTOCOLO</h2>
+		
+		<h:form>
+		
+			<fieldset>
+			
+				<h:outputLabel for="origem-protocolo" value="ORIGEM:"/>
+				<h:inputText id="origem-protocolo" value="#{gerenciarDemandasBean.protocolo.origem}" />
+				
+				<h:outputLabel for="num-protocolo" value="NÚMERO:" />
+				<h:inputText id="num-protocolo" value="#{gerenciarDemandasBean.protocolo.numero}" />
+				
+				<h:outputLabel for="data-protocolo" value="DATA:" />
+				<h:inputText id="data-protocolo" value="#{gerenciarDemandasBean.protocolo.data}">
+					<f:passThroughAttribute name="type" value="date" />
+					<f:converter converterId="localDateConverter" />
+				</h:inputText>
+			
+			</fieldset>
+			
+			<h:commandButton action="#{gerenciarDemandasBean.gravarProtocolo}" value="Salvar" />
+			<h:commandButton action="#{gerenciarDemandasBean.excluirProtocolo}" value="Excluir" />
+		
+		</h:form>
+	
+	</h:body>
+
+</html>
